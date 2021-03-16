@@ -1,11 +1,12 @@
 class Api::V1::BusinessesController < ApplicationController
+  before_action :set_event, only: [:show, :create, :update, :destroy]
+
   def index
     @businesses = Busniess.all
     render json: BusinessSerializer.new(@businesses).serializable_hash.to_json
   end
 
   def create
-    @business = Business.new(business_params)
     if @business.save
       render json: BusinessSerializer.new(@business).serializable_hash.to_json
     else
@@ -14,7 +15,6 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def show
-    @business = Business.find(params[:id])
     if @business
       render json: BusinessSerializer.new(@business).serializable_hash.to_json
     else 
@@ -23,7 +23,6 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def update
-    @business = Business.find(params[:id])
     if @business.update(business_params)
       render json: BusinessSerializer.new(@business).serializable_hash.to_json
     else
@@ -32,7 +31,6 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def destroy
-    @business = Business.find(params[:id])
     if @business.destroy
       render json: {}, status: :accepted
     else
@@ -43,6 +41,10 @@ class Api::V1::BusinessesController < ApplicationController
   private
 
   def business_params
-      params.require(:business).permit(:name, :website, :state, :founded_date)
+    params.require(:business).permit(:name, :website, :state, :founded_date)
+  end
+
+  def set_business
+    @business = Business.find(params[:id])
   end
 end
