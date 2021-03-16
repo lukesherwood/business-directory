@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
     def index
-
+        
     end
 
     def new
@@ -20,6 +20,6 @@ class BusinessesController < ApplicationController
     end
 
     def delete
-        
+
     end
 end
