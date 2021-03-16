@@ -1,8 +1,8 @@
 class Api::V1::BusinessesController < ApplicationController
-  before_action :set_event, only: [:show, :create, :update, :destroy]
+  before_action :set_business, only: [:show, :create, :update, :destroy]
 
   def index
-    @businesses = Busniess.all
+    @businesses = Business.all
     render json: BusinessSerializer.new(@businesses).serializable_hash.to_json
   end
 
@@ -45,6 +45,6 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def set_business
-    @business = Business.find_by_slug(params[:slug]))
+    @business = Business.find_by_slug(params[:slug])
   end
 end
