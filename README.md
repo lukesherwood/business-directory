@@ -15,4 +15,6 @@
  - Navigate to the API directory and 'bundle install'
  - run 'bundle exec figaro install'
  - setup your Postgres database then add the password as the value to the key 'DATABASE_PASSWORD' in config/application.yml
+ - run 'rails db:create'
+ - 'rails db:migrate'
  - 
