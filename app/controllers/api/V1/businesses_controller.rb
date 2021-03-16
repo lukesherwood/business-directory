@@ -45,6 +45,6 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def set_business
-    @business = Business.find(params[:id])
+    @business = Business.find_by_slug(params[:slug]))
   end
 end
