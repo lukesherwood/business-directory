@@ -1,5 +1,5 @@
 class Api::V1::BusinessesController < ApplicationController
-  before_action :set_business, only: [:show, :create, :update, :destroy]
+  before_action :set_business, only: [:show, :update, :destroy]
 
   def index
     @businesses = Business.all
@@ -7,6 +7,7 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def create
+    @business = Business.new(business_params)
     if @business.save
       render json: BusinessSerializer.new(@business).serializable_hash.to_json
     else
